@@ -3,6 +3,7 @@
  */
 import { createRouter } from '../createRouter';
 import { postRouter } from './post';
+import { commentRouter } from './comment';
 import superjson from 'superjson';
 
 /**
@@ -33,6 +34,7 @@ export const appRouter = createRouter()
   /**
    * Merge `postRouter` under `post.`
    */
-  .merge('post.', postRouter);
+  .merge('post.', postRouter)
+  .merge('comment.', commentRouter);
 
 export type AppRouter = typeof appRouter;
