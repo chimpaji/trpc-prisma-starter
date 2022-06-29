@@ -14,9 +14,20 @@ model Post {
   id    String @id @default(uuid())
   title String
   text  String
-
+  comments Comment[]
   // To return `Date`s intact through the API we need to add data transformers
   // https://trpc.io/docs/data-transformers
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  post    Post  @relation(fields:[postId],references: [id])
+  postId  String
+  name    String
+  message String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
